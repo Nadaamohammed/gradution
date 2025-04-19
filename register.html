@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="css/login.css" rel="stylesheet" type="text/css">
+        <title>Register</title>
+        <link rel="stylesheet" href="css/style - Copy.css">
+        <link rel="stylesheet" href="css/register.css">
+    </head>
+    <body>
+    <section>
+        <div class="container">
+            <!-- Title section -->
+            <div class="title">Registration</div>
+            <div class="content">
+              <!-- Registration form -->
+              <form action="#" id="registerForm">
+                <div class="user-details">
+                  <!-- Input for Full Name -->
+                  <div class="input-box">
+                    <span class="details">Full Name</span>
+                    <input type="text" placeholder="Enter your name"id="full" required>
+                  </div>
+                  <!-- Input for Username -->
+                  <div class="input-box">
+                    <span class="details">Username</span>
+                    <input type="text" placeholder="Enter your username" id="username" required>
+                  </div>
+                  <!-- Input for Email -->
+                  <div class="input-box">
+                    <span class="details">Email</span>
+                    <input type="text" placeholder="Enter your email" id="email" required>
+                  </div>
+                  <!-- Input for Phone Number -->
+                  <div class="input-box">
+                    <span class="details">Phone Number</span>
+                    <input type="text" placeholder="Enter your number" id="phone" required>
+                  </div>
+                  <!-- Input for Password -->
+                  <div class="input-box">
+                    <span class="details">Password</span>
+                    <input type="text" placeholder="Enter your password" id="password" required>
+                  </div>
+                  <!-- Input for Confirm Password -->
+                  <div class="input-box">
+                    <span class="details">Confirm Password</span>
+                    <input type="text" placeholder="Confirm your password" id="confirm" required>
+                  </div>
+                
+                 <!--address-->  
+                  <div class="input-box">
+                    <span class="details">Address</span>
+                    <input type="text" placeholder="Enter your address" id="address" required>
+                  </div>
+                
+                 <!--zipcode-->
+               
+              <div class="input-box">
+                <span class="details">Zip Code</span>
+                <input type="text" placeholder="Enter your zipcode" id="zip" required>
+              </div>
+            </div>
+                
+                <!-- Submit button -->
+                <div class="button">
+                  <input type="submit" value="Register">
+                </div>
+              </form>
+            </div>
+          </div>
+    </section>
+    <script>
+        $('#registerForm').on('submit', function(e) {
+          e.preventDefault();
+      
+          $.ajax({
+            type: 'POST',
+            url: 'http://localhost:8080/auth/register',
+            contentType: 'application/json',
+            data: JSON.stringify({
+              full_name: $('#full').val(),
+              user_name: $('#username').val(),
+              email: $('#email').val(),
+              password: $('#password').val(),
+              confirm_password: $('#confirm').val(),
+              phone: $('#phone').val(),
+              address: $('#address').val(),
+              zip: $('#zip').val()
+            }),
+            success: function(response) {
+              $('#registerForm')[0].reset();
+              window.location.replace('http://localhost:8080/login.html')
+            },
+            error: function(xhr) {
+              $('#registerMessage').html('<p style="color:red;">' + xhr.responseJSON.message + '</p>');
+            }
+          });
+        });
+      </script>
+        
+      </body>
+      </html>
+      
+      
+                    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                    <script>
+                    $(document).ready(function() {
+                        $('#myButton').click(function() {
+                        var url = "http://localhost:8080/auth/register";
+                        var formData = {
+                            first_name: $("#first_name").val(),
+                            last_name: $("#last_name").val(),
+                            email: $("#email").val(),
+                            phone: $("#phone").val(),
+                            password: $("#password").val(),
+                            address: $("#address").val(),
+                        };
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(formData),
+                            dataType: "json",
+                            success: function() {
+                                alert("good")
+                            },
+                        });
+                    })});
+                    </script> -->
+                <!-- </div>
+            </div>
+        </section>
+    </body>
+</html> -->
